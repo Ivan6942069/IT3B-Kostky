@@ -9,12 +9,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.IO;
 using System;
+using System.Windows.Shapes;
 
 namespace IT3B_Kostky
 {
     public partial class MainWindow : Window
     {
         private Random random = new Random();
+        private int rollCount = 0;
 
         public MainWindow()
         {
@@ -29,23 +31,56 @@ namespace IT3B_Kostky
                 diceValues[i] = random.Next(1, 7);
             }
 
-            lblDice1.Content = diceValues[0].ToString();
-            lblDice2.Content = diceValues[1].ToString();
-            lblDice3.Content = diceValues[2].ToString();
-            lblDice4.Content = diceValues[3].ToString();
-            lblDice5.Content = diceValues[4].ToString();
-            lblDice6.Content = diceValues[5].ToString();
+            DrawDice(dice1, diceValues[0]);
+            DrawDice(dice2, diceValues[1]);
+            DrawDice(dice3, diceValues[2]);
+            DrawDice(dice4, diceValues[3]);
+            DrawDice(dice5, diceValues[4]);
+            DrawDice(dice6, diceValues[5]);
 
             SaveDiceHistory(diceValues);
         }
 
+        private void DrawDice(Canvas canvas, int value)
+        {
+            canvas.Children.Clear();
+
+            // Positions for the dots on a dice face
+            var positions = new[]
+            {
+                new[] { new Point(30, 30) }, // 1
+                new[] { new Point(10, 10), new Point(50, 50) }, // 2
+                new[] { new Point(10, 10), new Point(30, 30), new Point(50, 50) }, // 3
+                new[] { new Point(10, 10), new Point(10, 50), new Point(50, 10), new Point(50, 50) }, // 4
+                new[] { new Point(10, 10), new Point(10, 50), new Point(30, 30), new Point(50, 10), new Point(50, 50) }, // 5
+                new[] { new Point(10, 10), new Point(10, 30), new Point(10, 50), new Point(50, 10), new Point(50, 30), new Point(50, 50) }, // 6
+            };
+
+            foreach (var pos in positions[value - 1])
+            {
+                Ellipse dot = new Ellipse
+                {
+                    Width = 10,
+                    Height = 10,
+                    Fill = Brushes.Black
+                };
+                Canvas.SetLeft(dot, pos.X - 5);
+                Canvas.SetTop(dot, pos.Y - 5);
+                canvas.Children.Add(dot);
+            }
+        }
+
         private void SaveDiceHistory(int[] diceValues)
         {
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dice_history.txt");
+            rollCount++;
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+            string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dice_history.txt");
             string diceRoll = string.Join(", ", diceValues);
+            string historyEntry = $"{rollCount}. {timestamp} - {diceRoll}";
+
             using (StreamWriter writer = new StreamWriter(filePath, true))
             {
-                writer.WriteLine(diceRoll);
+                writer.WriteLine(historyEntry);
             }
         }
     }
