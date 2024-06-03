@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Button x:Name="btnRoll" Content="Roll a Dice" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,389,0,0" Click="btnRoll_Click" Height="25" Width="74" />
+        <UniformGrid Rows="2" Columns="3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,284,0,0">
+            <Label x:Name="lblDice1" Content="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" FontSize="24" />
+            <Label x:Name="lblDice2" Content="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" FontSize="24" />
+            <Label x:Name="lblDice3" Content="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" FontSize="24" />
+            <Label x:Name="lblDice4" Content="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" FontSize="24" />
+            <Label x:Name="lblDice5" Content="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" FontSize="24" />
+            <Label x:Name="lblDice6" Content="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" FontSize="24" />
+        </UniformGrid>
     </Grid>
 </Window>
