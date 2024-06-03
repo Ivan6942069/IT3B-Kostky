@@ -45,15 +45,14 @@ namespace IT3B_Kostky
         {
             canvas.Children.Clear();
 
-            // Positions for the dots on a dice face
             var positions = new[]
             {
-                new[] { new Point(30, 30) }, // 1
-                new[] { new Point(10, 10), new Point(50, 50) }, // 2
-                new[] { new Point(10, 10), new Point(30, 30), new Point(50, 50) }, // 3
-                new[] { new Point(10, 10), new Point(10, 50), new Point(50, 10), new Point(50, 50) }, // 4
-                new[] { new Point(10, 10), new Point(10, 50), new Point(30, 30), new Point(50, 10), new Point(50, 50) }, // 5
-                new[] { new Point(10, 10), new Point(10, 30), new Point(10, 50), new Point(50, 10), new Point(50, 30), new Point(50, 50) }, // 6
+                new[] { new Point(30, 30) },
+                new[] { new Point(10, 10), new Point(50, 50) },
+                new[] { new Point(10, 10), new Point(30, 30), new Point(50, 50) },
+                new[] { new Point(10, 10), new Point(10, 50), new Point(50, 10), new Point(50, 50) },
+                new[] { new Point(10, 10), new Point(10, 50), new Point(30, 30), new Point(50, 10), new Point(50, 50) },
+                new[] { new Point(10, 10), new Point(10, 30), new Point(10, 50), new Point(50, 10), new Point(50, 30), new Point(50, 50) },
             };
 
             foreach (var pos in positions[value - 1])
